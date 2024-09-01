@@ -57,7 +57,7 @@ namespace H2O.Controllers
         [HttpGet("welcome")]
         public IActionResult GetWelcomeMessage()
         {
-            return Ok("Welcome to the Login API!");
+            return Ok("Welcome to the Login API!!!");
         }
 
         // GET api/<LoginController>/status
