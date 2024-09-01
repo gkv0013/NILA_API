@@ -1,0 +1,12 @@
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\bin\Release\net8.0\DLLayer.deps.json
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\bin\Release\net8.0\DLLayer.dll
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\bin\Release\net8.0\DLLayer.pdb
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.csproj.AssemblyReference.cache
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.AssemblyInfoInputs.cache
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.AssemblyInfo.cs
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.csproj.CoreCompileInputs.cache
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.dll
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\refint\DLLayer.dll
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.pdb
+C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\ref\DLLayer.dll

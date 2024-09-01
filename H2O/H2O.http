@@ -1,0 +1,6 @@
+@H2O_HostAddress = http://localhost:5224
+
+GET {{H2O_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
