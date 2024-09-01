@@ -19,7 +19,7 @@ var configuration = app.Services.GetRequiredService<IConfiguration>();
 PgsqlHelper.Initialize(configuration);
 app.UseCors(builder =>
 {
-    builder.WithOrigins("http://localhost:3000") // Add your allowed origins here
+    builder.WithOrigins("http://localhost:4200") // Add your allowed origins here
            .AllowAnyHeader()
            .AllowAnyMethod();
 });
