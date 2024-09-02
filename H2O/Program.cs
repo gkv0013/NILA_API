@@ -17,12 +17,25 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 var configuration = app.Services.GetRequiredService<IConfiguration>();
 PgsqlHelper.Initialize(configuration);
-app.UseCors(builder =>
+if (app.Environment.IsDevelopment())
 {
-    builder.WithOrigins("http://localhost:4200") // Add your allowed origins here
-           .AllowAnyHeader()
-           .AllowAnyMethod();
-});
+    app.UseCors(builder =>
+    {
+        builder.WithOrigins("http://localhost:4200")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+}
+else
+{
+    app.UseCors(builder =>
+    {
+        builder.WithOrigins("https://yourproductiondomain.com")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
