@@ -10,3 +10,18 @@ C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\DLL
 C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\refint\DLLayer.dll
 C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.pdb
 C:\Users\gkv00\Documents\Angular 18\Nila\NILA_API\DLLayer\obj\Release\net8.0\ref\DLLayer.dll
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\bin\Release\net8.0\DLLayer.deps.json
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\bin\Release\net8.0\DLLayer.dll
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\bin\Release\net8.0\DLLayer.pdb
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\bin\Release\net8.0\DllLayer.PgSqlHelper.dll
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.csproj.AssemblyReference.cache
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.AssemblyInfoInputs.cache
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.AssemblyInfo.cs
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.csproj.CoreCompileInputs.cache
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.sourcelink.json
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.csproj.Up2Date
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.dll
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\refint\DLLayer.dll
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\DLLayer.pdb
+C:\Users\kkris\Source\Repos\NILA_API\DLLayer\obj\Release\net8.0\ref\DLLayer.dll
