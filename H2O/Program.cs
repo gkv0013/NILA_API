@@ -21,7 +21,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseCors(builder =>
     {
-        builder.WithOrigins("http://localhost:4200")
+        builder.WithOrigins("http://0.0.0.0:4200")
                .AllowAnyHeader()
                .AllowAnyMethod();
     });
@@ -30,7 +30,7 @@ else
 {
     app.UseCors(builder =>
     {
-        builder.WithOrigins("https://yourproductiondomain.com")
+        builder.WithOrigins("http://0.0.0.0:4200")
                .AllowAnyHeader()
                .AllowAnyMethod();
     });
