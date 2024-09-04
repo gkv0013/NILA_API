@@ -21,7 +21,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseCors(builder =>
     {
-        builder.WithOrigins("http://localhost:4200")
+        builder.WithOrigins("http://localhost:4200", "https://nilaapi20240830153816.azurewebsites.net", "https://api.telegram.org/bot7092587891:AAHZqlRZsNqqsMEs5F6dhzstQL___NSEV3A", "https://coin-99c1e.firebaseapp.com")
                .AllowAnyHeader()
                .AllowAnyMethod();
     });
@@ -30,7 +30,7 @@ else
 {
     app.UseCors(builder =>
     {
-        builder.WithOrigins("https://yourproductiondomain.com")
+         builder.WithOrigins("http://localhost:4200", "https://nilaapi20240830153816.azurewebsites.net", "https://api.telegram.org/bot7092587891:AAHZqlRZsNqqsMEs5F6dhzstQL___NSEV3A/", "https://coin-99c1e.firebaseapp.com")
                .AllowAnyHeader()
                .AllowAnyMethod();
     });
