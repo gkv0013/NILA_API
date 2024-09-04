@@ -53,7 +53,7 @@ namespace BLLayer
             }
         }
 
-        public object? Register(DataTable data)
+        public object? Collect(DataTable data)
         {
             // IDbConnection is instantiated within a using statement.
             using (var connection = PgsqlHelper.GetOpenConnection())
@@ -61,7 +61,7 @@ namespace BLLayer
                 try
                 {
                     var dlLogin = new DLLogin();
-                    return dlLogin.Register(data, connection);
+                    return dlLogin.Collect(data, connection);
                 }
                 catch (Exception ex)
                 {

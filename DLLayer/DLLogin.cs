@@ -24,13 +24,13 @@ namespace DLLayer
             }
         }
 
-        public object? Register(DataTable data,IDbConnection connection)
+        public object? Collect(DataTable data,IDbConnection connection)
         {
             try
             {
-                NpgsqlParameter[] parameters = PgsqlHelper.GetSpParameterSet(connection, "user_registration");
-                MapDataToParameters(data, parameters);
-                DataSet result = PgsqlHelper.ExecuteFunction("user_registration", parameters, connection, "result");
+                NpgsqlParameter[] parameters = PgsqlHelper.GetSpParameterSet(connection, "user_login");
+                MapCollectToParameters(data, parameters);
+                DataSet result = PgsqlHelper.ExecuteFunctionWithTransaction("user_login", parameters, connection, "result");
                 return result.Tables["result"]?? null;
             } catch(Exception ex)
             {
@@ -38,6 +38,38 @@ namespace DLLayer
             }
  
         }
+        private void MapCollectToParameters(DataTable data, NpgsqlParameter[] parameters)
+        {
+            // Iterate through each row in the DataTable
+            foreach (DataRow row in data.Rows)
+            {
+                foreach (var parameter in parameters)
+                {
+                    switch (parameter.ParameterName)
+                    {
+                        case "p_telegramid":
+                            parameter.Value = row["id"] != DBNull.Value ? Convert.ToInt64(row["id"]) : 0;
+                            break;
+                        case "p_mode":
+                            parameter.Value = 1;  // Mode is fixed to 1
+                            break;
+                        case "p_profit_per_tap":
+                            parameter.Value = row["profitPerTap"] != DBNull.Value ? Convert.ToDecimal(row["profitPerTap"]) : 0.0M;
+                            break;
+                        case "p_profit_per_hour":
+                            parameter.Value = row["profitPerHour"] != DBNull.Value ? Convert.ToDecimal(row["profitPerHour"]) : 0.0M;
+                            break;
+                        case "p_total_coins":
+                            parameter.Value = row["totalCoins"] != DBNull.Value ? Convert.ToInt64(row["totalCoins"]) : 0;
+                            break;
+                        default:
+                            // Handle or log any unexpected parameters if needed
+                            break;
+                    }
+                }
+            }
+        }
+
         public object? GetUsers(DataTable data, IDbConnection connection)
         {
             try
@@ -63,40 +95,40 @@ namespace DLLayer
                     switch (parameter.ParameterName)
                     {
                         case "p_telegramid":
-                            parameter.Value = Convert.ToInt64(row["id"]);
+                            parameter.Value = row["id"] != DBNull.Value ? Convert.ToInt64(row["id"]) : 0;
                             break;
                         case "p_mode":
-                            parameter.Value = Convert.ToInt32(row["mode"]);
+                            parameter.Value = row["mode"] != DBNull.Value ? Convert.ToInt32(row["mode"]) : 0;
                             break;
                         case "p_username":
-                            parameter.Value = row["username"].ToString();
+                            parameter.Value = row["username"] != DBNull.Value ? row["username"].ToString() : string.Empty;
                             break;
                         case "p_firstname":
-                            parameter.Value = row["firstname"].ToString();
+                            parameter.Value = row["firstname"] != DBNull.Value ? row["firstname"].ToString() : "fa";
                             break;
                         case "p_lastname":
-                            parameter.Value = row["lastname"].ToString();
+                            parameter.Value = row["lastname"] != DBNull.Value ? row["lastname"].ToString() : "fa";
                             break;
                         case "p_lastlogin":
-                            parameter.Value = Convert.ToDateTime(row["lastLogin"]);
+                            parameter.Value = row["lastLogin"] != DBNull.Value ? Convert.ToDateTime(row["lastLogin"]) : DateTime.Now;
                             break;
                         case "p_profit_per_tap":
-                            parameter.Value = Convert.ToDecimal(row["profitPerTap"]);
+                            parameter.Value = row["profitPerTap"] != DBNull.Value ? Convert.ToDecimal(row["profitPerTap"]) : 0.0M;
                             break;
                         case "p_profit_per_hour":
-                            parameter.Value = Convert.ToDecimal(row["profitPerHour"]);
+                            parameter.Value = row["profitPerHour"] != DBNull.Value ? Convert.ToDecimal(row["profitPerHour"]) : 0.0M;
                             break;
                         case "p_total_coins":
-                            parameter.Value = Convert.ToInt64(row["totalCoins"]);
+                            parameter.Value = row["totalCoins"] != DBNull.Value ? Convert.ToInt64(row["totalCoins"]) : 0;
                             break;
                         case "p_friends_invited":
-                            parameter.Value = Convert.ToInt32(row["friendsInvited"]);
+                            parameter.Value = row["friendsInvited"] != DBNull.Value ? Convert.ToInt32(row["friendsInvited"]) : 0;
                             break;
                         case "p_referral_bonus":
-                            parameter.Value = Convert.ToDecimal(row["referralBonus"]);
+                            parameter.Value = row["referralBonus"] != DBNull.Value ? Convert.ToDecimal(row["referralBonus"]) : 0.0M;
                             break;
                         case "p_daily_login_streak":
-                            parameter.Value = Convert.ToInt32(row["dailyLoginStreak"]);
+                            parameter.Value = row["dailyLoginStreak"] != DBNull.Value ? Convert.ToInt32(row["dailyLoginStreak"]) : 0;
                             break;
                         default:
                             // Handle or log any unexpected parameters if needed
@@ -105,6 +137,7 @@ namespace DLLayer
                 }
             }
         }
+
         private void MapUserDataToParameters(DataTable data, NpgsqlParameter[] parameters)
         {
             // Iterate through each row in the DataTable

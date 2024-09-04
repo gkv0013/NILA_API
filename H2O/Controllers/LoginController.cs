@@ -24,9 +24,9 @@ namespace H2O.Controllers
             switch (Data.CrudType)
             {
                 case CrudType.Create:
-                    if (Data.SaveData.Tables.Contains("userdata"))
+                    if (Data.SaveData.Tables.Contains("collect"))
                     {
-                        Result = objBLlogin.Register(Data.SaveData.Tables["userdata"]);
+                        Result = objBLlogin.Collect(Data.SaveData.Tables["collect"]);
                     }
                     else
                     {
