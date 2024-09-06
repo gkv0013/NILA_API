@@ -9,7 +9,8 @@
       "DLLayer/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration": "8.0.0",
-          "Npgsql": "8.0.3"
+          "Npgsql": "8.0.3",
+          "DllLayer.PgSqlHelper": "1.0.0.0"
         },
         "runtime": {
           "DLLayer.dll": {}
@@ -75,6 +76,14 @@
             "fileVersion": "8.0.3.0"
           }
         }
+      },
+      "DllLayer.PgSqlHelper/1.0.0.0": {
+        "runtime": {
+          "DllLayer.PgSqlHelper.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -125,6 +134,11 @@
       "sha512": "sha512-6WEmzsQJCZAlUG1pThKg/RmeF6V+I0DmBBBE/8YzpRtEzhyZzKcK7ulMANDm5CkxrALBEC8H+5plxHWtIL7xnA==",
       "path": "npgsql/8.0.3",
       "hashPath": "npgsql.8.0.3.nupkg.sha512"
+    },
+    "DllLayer.PgSqlHelper/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
