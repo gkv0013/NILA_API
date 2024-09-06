@@ -28,6 +28,10 @@ namespace H2O.Controllers
                     {
                         Result = objBLlogin.Collect(Data.SaveData.Tables["collect"]);
                     }
+                    else if (Data.SaveData.Tables.Contains("referer"))
+                    {
+
+                    }
                     else
                     {
                         Result =MessageLib.Error;
@@ -40,7 +44,7 @@ namespace H2O.Controllers
                     }
                  else if (Data.Mode==1)
                     {
-                        Result = objBLlogin.User(Data.FetchData);
+                        Result = objBLlogin.GetReferrer(Data.FetchData);
                     }
 
                     else if (Data.Mode==2)

@@ -33,13 +33,13 @@ namespace DLLayer
                     switch (parameter.ParameterName)
                     {
                         case "p_referrer_id":
-                            parameter.Value = Convert.ToInt64(row["userid"]);
+                            parameter.Value =row["userid"] != DBNull.Value ? row["userid"].ToString() : string.Empty; 
                             break;
                         case "p_username":
                             parameter.Value = row["username"].ToString();
                             break;
                         case "p_referred_id":
-                            parameter.Value = Convert.ToInt64(row["referrerid"]);
+                            parameter.Value = row["referrerid"] != DBNull.Value ? row["referrerid"].ToString() : string.Empty;
                             break;
                         default:
                             break;

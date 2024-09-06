@@ -74,7 +74,7 @@ namespace BLLayer
                 }
             }
         }
-        public object? User(DataTable data)
+        public object? GetReferrer(DataTable data)
         {
             // IDbConnection is instantiated within a using statement.
             using (var connection = PgsqlHelper.GetOpenConnection())
@@ -82,7 +82,7 @@ namespace BLLayer
                 try
                 {
                     var dlLogin = new DLLogin();
-                    return dlLogin.GetUsers(data, connection);
+                    return dlLogin.GetReferrer(data, connection);
                 }
                 catch (Exception ex)
                 {

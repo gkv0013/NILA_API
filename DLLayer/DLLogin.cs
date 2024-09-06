@@ -48,19 +48,13 @@ namespace DLLayer
                     switch (parameter.ParameterName)
                     {
                         case "p_telegramid":
-                            parameter.Value = row["id"] != DBNull.Value ? Convert.ToInt64(row["id"]) : 0;
+                            parameter.Value = row["id"] != DBNull.Value ? row["id"].ToString() : string.Empty;
                             break;
                         case "p_mode":
                             parameter.Value = 1;  // Mode is fixed to 1
                             break;
-                        case "p_profit_per_tap":
-                            parameter.Value = row["profitPerTap"] != DBNull.Value ? Convert.ToDecimal(row["profitPerTap"]) : 0.0M;
-                            break;
-                        case "p_profit_per_hour":
-                            parameter.Value = row["profitPerHour"] != DBNull.Value ? Convert.ToDecimal(row["profitPerHour"]) : 0.0M;
-                            break;
                         case "p_total_coins":
-                            parameter.Value = row["totalCoins"] != DBNull.Value ? Convert.ToInt64(row["totalCoins"]) : 0;
+                            parameter.Value = row["claim"] != DBNull.Value ? Convert.ToInt64(row["claim"]) : 0;
                             break;
                         default:
                             // Handle or log any unexpected parameters if needed
@@ -70,13 +64,13 @@ namespace DLLayer
             }
         }
 
-        public object? GetUsers(DataTable data, IDbConnection connection)
+        public object? GetReferrer(DataTable data, IDbConnection connection)
         {
             try
             {
-                NpgsqlParameter[] parameters = PgsqlHelper.GetSpParameterSet(connection, "get_users_with_pagination");
-                MapUserDataToParameters(data, parameters);
-                DataSet result = PgsqlHelper.ExecuteFunctionWithTransaction("get_users_with_pagination", parameters, connection, "result");
+                NpgsqlParameter[] parameters = PgsqlHelper.GetSpParameterSet(connection, "get_referred_users");
+                MapReferrerDataToParameters(data, parameters);
+                DataSet result = PgsqlHelper.ExecuteFunctionWithTransaction("get_referred_users", parameters, connection, "result");
                 return result.Tables["result"]?? null;
             }
             catch (Exception ex)
@@ -95,10 +89,10 @@ namespace DLLayer
                     switch (parameter.ParameterName)
                     {
                         case "p_telegramid":
-                            parameter.Value = row["id"] != DBNull.Value ? Convert.ToInt64(row["id"]) : 0;
+                            parameter.Value = row["id"] != DBNull.Value ? row["id"].ToString() : string.Empty;
                             break;
                         case "p_mode":
-                            parameter.Value = row["mode"] != DBNull.Value ? Convert.ToInt32(row["mode"]) : 0;
+                            parameter.Value = row["mode"] != DBNull.Value ? Convert.ToInt32(row["mode"]) : 10;
                             break;
                         case "p_username":
                             parameter.Value = row["username"] != DBNull.Value ? row["username"].ToString() : string.Empty;
@@ -138,7 +132,7 @@ namespace DLLayer
             }
         }
 
-        private void MapUserDataToParameters(DataTable data, NpgsqlParameter[] parameters)
+        private void MapReferrerDataToParameters(DataTable data, NpgsqlParameter[] parameters)
         {
             // Iterate through each row in the DataTable
             foreach (DataRow row in data.Rows)
@@ -147,11 +141,11 @@ namespace DLLayer
                 {
                     switch (parameter.ParameterName)
                     {
-                        case "p_pagenumber":
-                            parameter.Value = Convert.ToInt32(row["pagenumber"]);
+                        case "p_mode":
+                            parameter.Value = row["mode"] != DBNull.Value ? Convert.ToInt32(row["mode"]) : 10;
                             break;
-                        case "p_pagesize":
-                            parameter.Value = Convert.ToInt32(row["pagesize"]);
+                        case "p_referrer_id":
+                            parameter.Value = row["telegramid"];
                             break;
                         default:
                             break;
@@ -159,7 +153,6 @@ namespace DLLayer
                 }
             }
         }
-
         public DataTable SaveImage(DataTable? dataTable, IDbConnection connection)
         {
             try
