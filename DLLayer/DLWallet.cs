@@ -36,20 +36,30 @@ namespace DLLayer
                     switch (parameter.ParameterName)
                     {
                         case "p_telegramid":
-                            parameter.Value =row["id"] != DBNull.Value ? row["id"].ToString() : string.Empty;
+                            parameter.Value = data.Columns.Contains("id") && row["id"] != DBNull.Value
+                                ? row["id"].ToString()
+                                : string.Empty;
                             break;
+
                         case "p_mode":
-                            parameter.Value =  row["mode"] != DBNull.Value ? Convert.ToInt32(row["mode"]) : 10;
+                            parameter.Value = data.Columns.Contains("mode") && row["mode"] != DBNull.Value
+                                ? Convert.ToInt32(row["mode"])
+                                : 10;
                             break;
+
                         case "p_total_coins":
-                            parameter.Value = row["claim"] != DBNull.Value ? Convert.ToInt64(row["claim"]) : 0;
+                            parameter.Value = data.Columns.Contains("claim") && row["claim"] != DBNull.Value
+                                ? Convert.ToInt64(row["claim"])
+                                : 0;
                             break;
+
                         default:
-                            // Handle or log any unexpected parameters if needed
+                            // Keep the original value or handle unexpected parameters
                             break;
                     }
                 }
             }
         }
+
     }
 }
