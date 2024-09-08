@@ -3,6 +3,8 @@ using BLLayer;
 using H2O.Models;
 using Hydrogen.Common;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using System.Data;
 using static H2O.Enumerators.CrudTypes;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -13,36 +15,27 @@ namespace H2O.Controllers
     public class BoostController : ControllerBase
     {
         [HttpPost]
-        public IActionResult Post(Criteria Data)
+        public IActionResult Post(JObject data)
         {
             object? Result = null;
             BLBoost objBLBoost = new BLBoost();
-            switch (Data.CrudType)
-            {
-                case CrudType.Create:
-                    if (Data.SaveData.Tables.Contains("collect"))
-                    {
-                        Result = objBLBoost.Create(Data.SaveData.Tables["collect"]);
-                    }
-                    else
-                    {
-                        Result = MessageLib.Error;
-                    }
-                    break;
-                case CrudType.Read:
-                    if (Data.Mode == 0)
-                    {
-                        Result = objBLBoost.FetchCoin(Data.FetchData);
-                    }
-                    else if (Data.Mode == 1)
-                    {
-                        Result = objBLBoost.Update(Data.FetchData);
-                    }
-                    break;
-                default:
-                    // Handle other CRUD operations if needed
-                    break;
+            int mode = (int)data["mode"];
+            string telegramId = data["telegramId"].ToString();
+
+            DataTable referralData = new DataTable();
+            referralData.Columns.Add("mode", typeof(int));
+            referralData.Columns.Add("telegramId", typeof(string));
+
+            var newRow = referralData.NewRow();
+            newRow["mode"] = mode;
+            newRow["telegramId"] = telegramId;  // Telegram ID of referred user
+            referralData.Rows.Add(newRow);
+
+            if (mode == 0 || mode == 1|| mode == 2|| mode == 3)
+             {
+                Result = objBLBoost.Operation(referralData);
             }
+            
             return Ok(Result);
         }
     }

@@ -11,7 +11,7 @@ namespace BLLayer
 {
     public class BLBoost
     {
-        public object? Create(DataTable? data)
+        public object? Operation(DataTable? data)
         {
             // IDbConnection is instantiated within a using statement.
             using (var connection = PgsqlHelper.GetOpenConnection())
@@ -19,7 +19,7 @@ namespace BLLayer
                 try
                 {
                     var dlBoost = new DLBoost();
-                    return dlBoost.SaveBoostIfNotExists(data, connection);
+                    return dlBoost.BoostCall(data, connection);
                 }
                 catch (Exception ex)
                 {
@@ -32,51 +32,7 @@ namespace BLLayer
                 }
             }
         }
-        public object? Update(DataTable? data)
-        {
-            // IDbConnection is instantiated within a using statement.
-            using (var connection = PgsqlHelper.GetOpenConnection())
-            {
-                try
-                {
-                    var dlBoost = new DLBoost();
-                    return dlBoost.UpdateBoostData(data, connection);
-                }
-                catch (Exception ex)
-                {
-                    // Exception handling logic here.
-                    throw ex;
-                }
-                finally
-                {
-                    PgsqlHelper.CloseConnection(connection);
-                }
-            }
 
-        }
-
-        public object? FetchCoin(DataTable? data)
-        {
-            // IDbConnection is instantiated within a using statement.
-            using (var connection = PgsqlHelper.GetOpenConnection())
-            {
-                try
-                {
-                    var dlBoost = new DLBoost();
-                    return dlBoost.FetchBoostData(data, connection);
-                }
-                catch (Exception ex)
-                {
-                    // Exception handling logic here.
-                    throw ex;
-                }
-                finally
-                {
-                    PgsqlHelper.CloseConnection(connection);
-                }
-            }
-
-        }
 
 
     }

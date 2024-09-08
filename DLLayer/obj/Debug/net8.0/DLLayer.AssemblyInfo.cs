@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DLLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e81bcf0001b5a9739eac9566afce8482eff922d2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+511791d6ce920028e0f44233b6c4a0ea3efac046")]
 [assembly: System.Reflection.AssemblyProductAttribute("DLLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DLLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
