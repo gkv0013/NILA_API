@@ -28,6 +28,7 @@ namespace DLLayer
             }
         }
 
+
       
 
 
@@ -46,6 +47,9 @@ namespace DLLayer
                         case "p_mode":
                             parameter.Value = row["mode"];
                             break;
+                        case "p_type":
+                            parameter.Value = row["type"];
+                            break;
                         case "p_telegram_id":
                             parameter.Value = row["telegramId"];
                             break;
@@ -58,3 +62,5 @@ namespace DLLayer
 
     }
 }
+
+

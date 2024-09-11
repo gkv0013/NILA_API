@@ -21,13 +21,16 @@ namespace H2O.Controllers
             BLBoost objBLBoost = new BLBoost();
             int mode = (int)data["mode"];
             string telegramId = data["telegramId"].ToString();
+            string type = data["boostType"].ToString();
 
             DataTable referralData = new DataTable();
             referralData.Columns.Add("mode", typeof(int));
             referralData.Columns.Add("telegramId", typeof(string));
+            referralData.Columns.Add("type", typeof(string));
 
             var newRow = referralData.NewRow();
             newRow["mode"] = mode;
+            newRow["type"] = type;
             newRow["telegramId"] = telegramId;  // Telegram ID of referred user
             referralData.Rows.Add(newRow);
 
