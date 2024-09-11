@@ -62,6 +62,10 @@ namespace BLLayer
                 {
                     var dlLogin = new DLLogin();
                     return dlLogin.Collect(data, connection);
+                   
+                   
+
+                    
                 }
                 catch (Exception ex)
                 {
@@ -81,8 +85,19 @@ namespace BLLayer
             {
                 try
                 {
+                    Dictionary<string, object> result = new Dictionary<string, object>();
                     var dlLogin = new DLLogin();
-                    return dlLogin.GetReferrer(data, connection);
+                    DataTable initialResult = dlLogin.GetReferrer(data, connection) as DataTable;
+                    result.Add("friends", initialResult);
+                    if (initialResult != null && initialResult.Rows.Count > 0)
+                    {
+                        if (data.Columns.Contains("mode"))
+                        {
+                            data.Rows[0]["mode"] = 2;
+                            result.Add("Totalrewards", dlLogin.GetReferrer(data, connection));
+                        }
+                    }
+                    return result;
                 }
                 catch (Exception ex)
                 {
