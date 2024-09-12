@@ -355,24 +355,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gkv00\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\kkris\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gkv00\\Documents\\Angular 18\\Nila\\NILA_API\\BLLayer\\BLLayer.csproj",
+      "projectUniqueName": "C:\\Users\\kkris\\Source\\Repos\\NILA_API\\BLLayer\\BLLayer.csproj",
       "projectName": "BLLayer",
-      "projectPath": "C:\\Users\\gkv00\\Documents\\Angular 18\\Nila\\NILA_API\\BLLayer\\BLLayer.csproj",
-      "packagesPath": "C:\\Users\\gkv00\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gkv00\\Documents\\Angular 18\\Nila\\NILA_API\\BLLayer\\obj\\",
+      "projectPath": "C:\\Users\\kkris\\Source\\Repos\\NILA_API\\BLLayer\\BLLayer.csproj",
+      "packagesPath": "C:\\Users\\kkris\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kkris\\Source\\Repos\\NILA_API\\BLLayer\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\gkv00\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\kkris\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -387,8 +382,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\gkv00\\Documents\\Angular 18\\Nila\\NILA_API\\DLLayer\\DLLayer.csproj": {
-              "projectPath": "C:\\Users\\gkv00\\Documents\\Angular 18\\Nila\\NILA_API\\DLLayer\\DLLayer.csproj"
+            "C:\\Users\\kkris\\Source\\Repos\\NILA_API\\DLLayer\\DLLayer.csproj": {
+              "projectPath": "C:\\Users\\kkris\\Source\\Repos\\NILA_API\\DLLayer\\DLLayer.csproj"
             }
           }
         }
@@ -423,7 +418,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -82,7 +82,10 @@
           "Npgsql": "8.0.3"
         },
         "runtime": {
-          "DLLayer.dll": {}
+          "DLLayer.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "DllLayer.PgSqlHelper/1.0.0.0": {
