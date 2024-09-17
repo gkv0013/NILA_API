@@ -11,15 +11,15 @@ namespace DLLayer
 {
     public class DLBoost
     {
-        public object? BoostCall(DataTable referralData, IDbConnection connection)
+        public object? BoostInsert(DataTable referralData, IDbConnection connection)
         {
             Console.WriteLine("HI");
             try
             {
-                NpgsqlParameter[] parameters = PgsqlHelper.GetSpParameterSet(connection, "user_boost");
+                NpgsqlParameter[] parameters = PgsqlHelper.GetSpParameterSet(connection, "insert_boost_data");
 
-                MapReferralDataToParameters(referralData, parameters);
-                DataSet result = PgsqlHelper.ExecuteFunctionWithTransaction("user_boost", parameters, connection, "result");
+                MapBoostDataToParameters(referralData, parameters);
+                DataSet result = PgsqlHelper.ExecuteFunctionWithTransaction("insert_boost_data", parameters, connection, "result");
                 return result.Tables["result"] ?? null;
             }
             catch (Exception ex)
@@ -34,7 +34,7 @@ namespace DLLayer
 
 
         //chnage paramter mapping
-        private void MapReferralDataToParameters(DataTable data, NpgsqlParameter[] parameters)
+        private void MapBoostDataToParameters(DataTable data, NpgsqlParameter[] parameters)
         {
             // Iterate through each row in the DataTable
             foreach (DataRow row in data.Rows)
@@ -44,14 +44,24 @@ namespace DLLayer
                 {
                     switch (parameter.ParameterName)
                     {
+                        case "p_telegramid":
+                            parameter.Value = data.Columns.Contains("telegramId") && row["telegramId"] != DBNull.Value ? row["telegramId"].ToString() : string.Empty;
+                            break;
+                        case "p_boosttypeid":
+                            parameter.Value = data.Columns.Contains("boostTypeId") && row["boostTypeId"] != DBNull.Value ? Convert.ToInt32(row["boostTypeId"]) : 0;
+                            break;
+                        case "p_boosttype":
+                            parameter.Value = data.Columns.Contains("boostType") && row["boostType"] != DBNull.Value ? row["boostType"].ToString() : "";
+                            parameter.Value = row["boostType"];
+                            break;
+                        case "p_cost":
+                            parameter.Value =data.Columns.Contains("cost") && row["cost"] != DBNull.Value ? Convert.ToDecimal(row["cost"]) : 0m; 
+                            break;
                         case "p_mode":
-                            parameter.Value = row["mode"];
+                            parameter.Value =  data.Columns.Contains("mode") && row["mode"] != DBNull.Value ? Convert.ToInt32(row["mode"]) : 10;
                             break;
-                        case "p_type":
-                            parameter.Value = row["type"];
-                            break;
-                        case "p_telegram_id":
-                            parameter.Value = row["telegramId"];
+                        case "p_boost_timestamp":
+                            parameter.Value = data.Columns.Contains("boostTimestamp") && row["boostTimestamp"] != DBNull.Value ? Convert.ToDateTime(row["boostTimestamp"]) : DateTime.Now;
                             break;
                         default:
                             break;

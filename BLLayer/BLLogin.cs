@@ -14,7 +14,9 @@ namespace BLLayer
                 try
                 {
                     var dlLogin = new DLLogin();
+
                     DataTable result = dlLogin.SaveImage(saveData.Tables["image"], connection);
+                 
                     return result;
 
                 }
@@ -37,8 +39,14 @@ namespace BLLayer
                 try
                 {
                     var dlLogin = new DLLogin();
+                    Dictionary<string, object> res = new Dictionary<string, object>();
                     DataTable result= dlLogin.Login(data, connection);
-                   return result;
+                    res.Add("result", result);
+                    if (result.Rows.Count>0)
+                    {
+                        res.Add("cointsettings", dlLogin.GetSetttings(data, connection));
+                    }
+                    return res;
 
                 }
                 catch (Exception ex)

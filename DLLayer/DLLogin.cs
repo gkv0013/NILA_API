@@ -162,6 +162,39 @@ namespace DLLayer
                 throw ex;
             }
         }
+
+        public DataTable GetSetttings(DataTable? dataTable, IDbConnection connection)
+        {
+            try
+            {
+                NpgsqlParameter[] parameters = PgsqlHelper.GetSpParameterSet(connection, "select_settings");
+                MapSettingDataToParameters(dataTable, parameters);
+                DataSet result = PgsqlHelper.ExecuteFunctionWithTransaction("select_settings", parameters, connection, "result");
+                return result.Tables["result"]?? null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private void MapSettingDataToParameters(DataTable data, NpgsqlParameter[] parameters)
+        {
+            // Iterate through each row in the DataTable
+            foreach (DataRow row in data.Rows)
+            {
+                foreach (var parameter in parameters)
+                {
+                    switch (parameter.ParameterName)
+                    {
+                        case "p_mode":
+                            parameter.Value = data.Columns.Contains("mode") && row["mode"] != DBNull.Value ? Convert.ToInt32(row["mode"]) : 10;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
         private void MapImageDataToParameters(DataTable data, NpgsqlParameter[] parameters)
         {
             // Iterate through each row in the DataTable

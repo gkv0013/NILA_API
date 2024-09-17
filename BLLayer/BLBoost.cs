@@ -11,15 +11,15 @@ namespace BLLayer
 {
     public class BLBoost
     {
-        public object? Operation(DataTable? data)
+        public object? BoostSave(DataTable? data)
         {
-            // IDbConnection is instantiated within a using statement.
+       
             using (var connection = PgsqlHelper.GetOpenConnection())
             {
                 try
                 {
                     var dlBoost = new DLBoost();
-                    return dlBoost.BoostCall(data, connection);
+                    return dlBoost.BoostInsert(data, connection);
                 }
                 catch (Exception ex)
                 {
