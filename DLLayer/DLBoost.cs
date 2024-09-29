@@ -8,7 +8,6 @@ namespace DLLayer
     {
         public object? BoostInsert(DataTable referralData, IDbConnection connection)
         {
-            Console.WriteLine("HI");
             try
             {
                 NpgsqlParameter[] parameters = PgsqlHelper.GetSpParameterSet(connection, "insert_boost_data");
@@ -23,7 +22,44 @@ namespace DLLayer
             }
         }
 
+        public object? BoostLog(DataTable referralData, IDbConnection connection)
+        {
+            try
+            {
+                NpgsqlParameter[] parameters = PgsqlHelper.GetSpParameterSet(connection, "get_boost_logs");
 
+                MapBoostLogToParameters(referralData, parameters);
+                DataSet result = PgsqlHelper.ExecuteFunctionWithTransaction("get_boost_logs", parameters, connection, "result");
+                return result.Tables["result"] ?? null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private void MapBoostLogToParameters(DataTable data, NpgsqlParameter[] parameters)
+        {
+
+            foreach (DataRow row in data.Rows)
+            {
+
+                foreach (var parameter in parameters)
+                {
+                    switch (parameter.ParameterName)
+                    {
+                        case "p_telegramid":
+                            parameter.Value = data.Columns.Contains("telegramId") && row["telegramId"] != DBNull.Value ? row["telegramId"].ToString() : string.Empty;
+                            break;
+                  
+                        case "p_mode":
+                            parameter.Value =  data.Columns.Contains("mode") && row["mode"] != DBNull.Value ? Convert.ToInt32(row["mode"]) : 10;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
 
 
         private void MapBoostDataToParameters(DataTable data, NpgsqlParameter[] parameters)

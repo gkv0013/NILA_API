@@ -53,7 +53,27 @@ namespace BLLayer
                 }
             }
         }
+        public object? GetBoostLog(DataTable? data)
+        {
 
+            using (var connection = PgsqlHelper.GetOpenConnection())
+            {
+                try
+                {
+                    var dlBoost = new DLBoost();
+                    return dlBoost.BoostLog(data, connection);
+                }
+                catch (Exception ex)
+                {
+                    // Exception handling logic here.
+                    throw ex;
+                }
+                finally
+                {
+                    PgsqlHelper.CloseConnection(connection);
+                }
+            }
+        }
 
     }
 }

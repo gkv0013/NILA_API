@@ -42,6 +42,9 @@ namespace H2O.Controllers
                     if (Data.Mode==0)
                     {
                         Result = objblBoost.GetBoostData(Data.FetchData);
+                    }else if (Data.Mode==1)
+                    {
+                        Result = objblBoost.GetBoostLog(Data.FetchData);
                     }
                     break;
                 default:
