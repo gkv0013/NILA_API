@@ -1,11 +1,6 @@
 ﻿using DllLayer.PgSqlHelper;
 using Npgsql;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DLLayer
 {
@@ -29,14 +24,11 @@ namespace DLLayer
         }
 
 
-      
 
 
-
-        //chnage paramter mapping
         private void MapBoostDataToParameters(DataTable data, NpgsqlParameter[] parameters)
         {
-            // Iterate through each row in the DataTable
+
             foreach (DataRow row in data.Rows)
             {
                 
@@ -52,7 +44,6 @@ namespace DLLayer
                             break;
                         case "p_boosttype":
                             parameter.Value = data.Columns.Contains("boostType") && row["boostType"] != DBNull.Value ? row["boostType"].ToString() : "";
-                            parameter.Value = row["boostType"];
                             break;
                         case "p_cost":
                             parameter.Value =data.Columns.Contains("cost") && row["cost"] != DBNull.Value ? Convert.ToDecimal(row["cost"]) : 0m; 

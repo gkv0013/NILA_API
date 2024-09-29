@@ -38,6 +38,12 @@ namespace H2O.Controllers
                         }
                     }
                     break;
+                case CrudType.Read:
+                    if (Data.Mode==0)
+                    {
+                        Result = objblBoost.GetBoostData(Data.FetchData);
+                    }
+                    break;
                 default:
                     // Handle other CRUD operations if needed
                     break;
