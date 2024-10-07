@@ -45,6 +45,15 @@ namespace BLLayer
                     if (result.Rows.Count>0)
                     {
                         res.Add("cointsettings", dlLogin.GetSetttings(data, connection));
+                        if (data.Columns.Contains("mode"))
+                        {
+                            foreach (DataRow row in data.Rows)
+                            {
+                                row["mode"] = 1;
+                            }
+                            res.Add("goalsdata", dlLogin.GetSetttings(data, connection));
+                        }
+                     
                     }
                     return res;
 
