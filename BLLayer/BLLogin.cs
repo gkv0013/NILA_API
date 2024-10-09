@@ -14,7 +14,9 @@ namespace BLLayer
                 try
                 {
                     var dlLogin = new DLLogin();
+
                     DataTable result = dlLogin.SaveImage(saveData.Tables["image"], connection);
+                 
                     return result;
 
                 }
@@ -37,8 +39,23 @@ namespace BLLayer
                 try
                 {
                     var dlLogin = new DLLogin();
+                    Dictionary<string, object> res = new Dictionary<string, object>();
                     DataTable result= dlLogin.Login(data, connection);
-                   return result;
+                    res.Add("result", result);
+                    if (result.Rows.Count>0)
+                    {
+                        res.Add("cointsettings", dlLogin.GetSetttings(data, connection));
+                        if (data.Columns.Contains("mode"))
+                        {
+                            foreach (DataRow row in data.Rows)
+                            {
+                                row["mode"] = 1;
+                            }
+                            res.Add("goalsdata", dlLogin.GetSetttings(data, connection));
+                        }
+                     
+                    }
+                    return res;
 
                 }
                 catch (Exception ex)
@@ -62,6 +79,10 @@ namespace BLLayer
                 {
                     var dlLogin = new DLLogin();
                     return dlLogin.Collect(data, connection);
+                   
+                   
+
+                    
                 }
                 catch (Exception ex)
                 {
@@ -74,15 +95,26 @@ namespace BLLayer
                 }
             }
         }
-        public object? User(DataTable data)
+        public object? GetReferrer(DataTable data)
         {
             // IDbConnection is instantiated within a using statement.
             using (var connection = PgsqlHelper.GetOpenConnection())
             {
                 try
                 {
+                    Dictionary<string, object> result = new Dictionary<string, object>();
                     var dlLogin = new DLLogin();
-                    return dlLogin.GetUsers(data, connection);
+                    DataTable initialResult = dlLogin.GetReferrer(data, connection) as DataTable;
+                    result.Add("friends", initialResult);
+                    if (initialResult != null && initialResult.Rows.Count > 0)
+                    {
+                        if (data.Columns.Contains("mode"))
+                        {
+                            data.Rows[0]["mode"] = 2;
+                            result.Add("Totalrewards", dlLogin.GetReferrer(data, connection));
+                        }
+                    }
+                    return result;
                 }
                 catch (Exception ex)
                 {

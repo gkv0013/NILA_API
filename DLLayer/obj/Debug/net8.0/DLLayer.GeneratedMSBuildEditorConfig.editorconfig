@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DLLayer
-build_property.ProjectDir = C:\Users\kkris\Source\Repos\NILA_API-New\DLLayer\
+build_property.ProjectDir = C:\Users\kkris\Source\Repos\NILA_API\DLLayer\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
