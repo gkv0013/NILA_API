@@ -25,7 +25,7 @@ jobs:
 
     # Restore dependencies for the solution
     - name: Restore dependencies
-      run: dotnet restore ./H2O/Nilasln  # Update this path if your main solution is located elsewhere
+      run: dotnet restore ./H2O/Nila.sln  # Update this path if your main solution is located elsewhere
 
     # Build the solution
     - name: Build solution
