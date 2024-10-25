@@ -88,7 +88,7 @@ namespace DLLayer
                             parameter.Value =  data.Columns.Contains("mode") && row["mode"] != DBNull.Value ? Convert.ToInt32(row["mode"]) : 10;
                             break;
                         case "p_boost_timestamp":
-                            parameter.Value = data.Columns.Contains("boostTimestamp") && row["boostTimestamp"] != DBNull.Value ? Convert.ToDateTime(row["boostTimestamp"]) : DateTime.Now;
+                            parameter.Value = data.Columns.Contains("boostTimestamp") && row["boostTimestamp"] != DBNull.Value ? DateTimeOffset.Parse(row["boostTimestamp"].ToString()).UtcDateTime : DateTime.UtcNow;
                             break;
                         default:
                             break;
