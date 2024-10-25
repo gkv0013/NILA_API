@@ -1,0 +1,41 @@
+name: .NET CI/CD Workflow
+
+on:
+  # Trigger the workflow on push or pull request to the main branch
+  push:
+    branches: [ deploy-branch ]
+  pull_request:
+    branches: [ deploy-branch ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository code
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Setup .NET SDK
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'  # You can specify .NET version, e.g., 6.0.x or 7.0.x, depending on your project
+
+    # Restore dependencies for the solution
+    - name: Restore dependencies
+      run: dotnet restore ./H2O/Nila.sln  # Update this path if your main solution is located elsewhere
+
+    # Build the solution
+    - name: Build solution
+      run: dotnet build ./H2O/Nila.sln --configuration Release --no-restore
+
+    # Run tests (if you have unit tests)
+    - name: Run tests
+      run: dotnet test ./H2O/Nila.sln --no-build --verbosity normal
+
+    # Optionally publish artifacts (for deploying or packaging)
+    - name: Publish artifacts
+      run: dotnet publish ./H2O/Nila.sln --configuration Release --output ./publish
+
